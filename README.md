@@ -6,7 +6,7 @@
 
 # blobfish
 
-This binary allows you to dynamically sync files between GitHub retpositories.
+This binary allows you to dynamically sync files between GitHub repositories.
 
 ## 🐡 Install
 
