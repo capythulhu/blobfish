@@ -1,123 +1,124 @@
-const fs = require('fs');
+import { existsSync, readFileSync, mkdirSync, writeFileSync } from 'fs';
+import chalk from 'chalk';
 
-exports.command = 'sync'
-exports.desc = 'Sync files from .blobfish file to your project'
-exports.options = {
-    token: {
-        alias: 't',
-        describe: 'Github Token',
-        type: 'string',
+export default {
+    command: 'sync',
+    desc: 'Sync files from .blobfish file to your project',
+    options: {
+        token: {
+            alias: 't',
+            describe: 'Github Token',
+            type: 'string',
+        },
+        verbose: {
+            alias: 'v',
+            describe: 'Verbose output',
+            type: 'boolean',
+        }
     },
-    verbose: {
-        alias: 'v',
-        describe: 'Verbose output',
-        type: 'boolean',
-    }
-}
-
-exports.handler = async (argv) => {
-    // Check if GH_TOKEN is passed as an argument
-    const token = argv.token || argv.t || process.env.GH_TOKEN;
-    if (!token) {
-        console.error('🐡 GH_TOKEN is required. Please pass it as an argument using --token or set it as GH_TOKEN environment variable.');
-        process.exit(1);
-    }
-
-    // Check if verbose is passed as an argument
-    const verbose = argv.verbose || argv.v || false;
-
-    // Check if .blobfish file exists
-    if (!fs.existsSync('.blobfish')) {
-        console.error('🐡 No .blobfish file detected. Run blobfish init first, or crete it manually.');
-        process.exit(1);
-    }
-
-    // Read .blobfish file
-    var blobfish = JSON.parse(fs.readFileSync('.blobfish', 'utf8'));
-
-    // Validate .blobfish file
-    const error = '🐡 Invalid .blobfish file. Please check the documentation.'
-    if (!Array.isArray(blobfish)) {
-        console.error(error);
-        process.exit(1);
-    }
-    for (const repository of blobfish) {
-        if (!repository.repo) {
+    handler: async (argv) => {
+        // Check if GH_TOKEN is passed as an argument
+        const token = argv.token || argv.t || process.env.GH_TOKEN;
+        if (!token) {
+            console.error(chalk.redBright('🐡 GH_TOKEN is required. Please pass it as an argument using --token or set it as GH_TOKEN environment variable.'));
+            process.exit(1);
+        }
+    
+        // Check if verbose is passed as an argument
+        const verbose = argv.verbose || argv.v || false;
+    
+        // Check if .blobfish file exists
+        if (!existsSync('.blobfish')) {
+            console.error(chalk.redBright('🐡 No .blobfish file detected. Run blobfish init first, or crete it manually.'));
+            process.exit(1);
+        }
+    
+        // Read .blobfish file
+        var blobfish = JSON.parse(readFileSync('.blobfish', 'utf8'));
+    
+        // Validate .blobfish file
+        const error = chalk.redBright('🐡 Invalid .blobfish file. Please check the documentation.')
+        if (!Array.isArray(blobfish)) {
             console.error(error);
             process.exit(1);
         }
-        if (!repository.files) {
-            console.error(error);
-            process.exit(1);
-        }
-        if (!Array.isArray(repository.files)) {
-            console.error(error);
-            process.exit(1);
-        }
-        for (const file of repository.files) {
-            if (typeof file !== 'string' && typeof file !== 'object') {
+        for (const repository of blobfish) {
+            if (!repository.repo) {
                 console.error(error);
                 process.exit(1);
             }
-            if (typeof file === 'object') {
-                if (!file.from || !file.to) {
+            if (!repository.files) {
+                console.error(error);
+                process.exit(1);
+            }
+            if (!Array.isArray(repository.files)) {
+                console.error(error);
+                process.exit(1);
+            }
+            for (const file of repository.files) {
+                if (typeof file !== 'string' && typeof file !== 'object') {
                     console.error(error);
                     process.exit(1);
                 }
+                if (typeof file === 'object') {
+                    if (!file.from || !file.to) {
+                        console.error(error);
+                        process.exit(1);
+                    }
+                }
             }
         }
-    }
-
-    // Sync files
-    var totalFiles = 0;
-    var syncedFiles = 0;
-    for (const repository of blobfish) {
-        for (const file of repository.files) {
-            totalFiles++;
-            var from, to
-            if (typeof file === 'string') {
-                from = to = file;
-            } else if (typeof file === 'object') {
-                from = file.from;
-                to = file.to;
-            }
-
-            if (verbose) {
-                console.log(`🐡 Syncing ${from} from ${repository.repo} to ${to}`);
-            }
-
-            const apiUrl = `https://api.github.com/repos/${repository.repo}/contents/${from}`;
-            const headers = {
-            Authorization: `token ${token}`,
-            };
-            try {
-                const res = await fetch(apiUrl, { headers });
-                if (res.status !== 200) {
-                    switch (res.status) {
-                        case 401:
-                            console.error(`🐡 Invalid token. Please check your GH_TOKEN environment variable or --token argument.`);
-                            break;
-                        case 404:
-                            console.error(`🐡 Repository ${repository.repo} or file ${from} not found.`);
-                            break;
-                        default:
-                            console.error(`🐡 Error while fetching ${apiUrl}: ${res.status} ${res.statusText}`);
-                            break;
-                    }
-                    continue
+    
+        // Sync files
+        var totalFiles = 0;
+        var syncedFiles = 0;
+        for (const repository of blobfish) {
+            for (const file of repository.files) {
+                totalFiles++;
+                var from, to
+                if (typeof file === 'string') {
+                    from = to = file;
+                } else if (typeof file === 'object') {
+                    from = file.from;
+                    to = file.to;
                 }
-                const json = await res.json();
-                const content = Buffer.from(json.content, "base64").toString("utf-8");
-
-                // Create the directory if it doesn't exist
-                const path = to.split('/');
-                path.pop();
-                fs.mkdirSync(`./${path.join('/')}`, { recursive: true });
-
-                // Write the file
-                fs.writeFileSync(
-                `./${to}`,
-                `// 🐡 THIS FILE IS AUTOGENERATED, please do not edit manually. 🐡 
+    
+                if (verbose) {
+                    console.log(`🐡 Syncing ${from} from ${repository.repo} to ${to}`);
+                }
+    
+                const apiUrl = `https://api.github.com/repos/${repository.repo}/contents/${from}`;
+                const headers = {
+                Authorization: `token ${token}`,
+                };
+                try {
+                    const res = await fetch(apiUrl, { headers });
+                    if (res.status !== 200) {
+                        switch (res.status) {
+                            case 401:
+                                console.error(chalk.redBright(`🐡 Invalid token. Please check your GH_TOKEN environment variable or --token argument.`));
+                                break;
+                            case 404:
+                                console.error(chalk.redBright(`🐡 Repository ${repository.repo} or file ${from} not found.`));
+                                break;
+                            default:
+                                console.error(chalk.redBright(`🐡 Error while fetching ${apiUrl}: ${res.status} ${res.statusText}`));
+                                break;
+                        }
+                        continue
+                    }
+                    const json = await res.json();
+                    const content = Buffer.from(json.content, "base64").toString("utf-8");
+    
+                    // Create the directory if it doesn't exist
+                    const path = to.split('/');
+                    path.pop();
+                    mkdirSync(`./${path.join('/')}`, { recursive: true });
+    
+                    // Write the file
+                    writeFileSync(
+                    `./${to}`,
+                    `// 🐡 THIS FILE IS AUTOGENERATED, please do not edit manually. 🐡 
 // This is intended to represent an exact copy of:
 // https://github.com/${repository.repo}/blob/main/${from}
 
@@ -125,23 +126,20 @@ exports.handler = async (argv) => {
 // blobfish sync
 // and commit the changes on this repo too.
 ${content}`,
-                "utf-8"
-                );
-            } catch (e) {
-                console.error(`🐡 Error while fetching ${apiUrl}: ${e}`);
-                continue
+                    "utf-8"
+                    );
+                } catch (e) {
+                    console.error(chalk.redBright(`🐡 Error while fetching ${apiUrl}: ${e}`));
+                    continue
+                }
+                syncedFiles++;
+    
+                if (verbose) console.log(`🐡 Synced ${from} from ${repository.repo} to ${to}`);
             }
-            syncedFiles++;
-
-            if (verbose) {
-                console.log(`🐡 Synced ${from} from ${repository.repo} to ${to}`);
-            }
+    
+            if (verbose) console.log(chalk.green(`🐡 Synced ${repository.repo}`));
         }
-
-        if (verbose) {
-            console.log(`🐡 Synced ${repository.repo}`);
-        }
+    
+        console.log(green(`🐡 Synced ${syncedFiles} out of ${totalFiles} files!`));
     }
-
-    console.log(`🐡 Synced ${syncedFiles} out of ${totalFiles} files!`);
 }

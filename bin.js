@@ -1,14 +1,27 @@
 #!/usr/bin/env node
-
-const yargs = require('yargs');
+import yargs from 'yargs';
 
 // Get .env variables
-require('dotenv').config();
+import { config } from 'dotenv';
+config();
+
+// Import commands
+import init from './commands/init.js';
+import sync from './commands/sync.js';
 
 // Configure yargs
-yargs
-    .usage('Usage: $0 <command> [options]')
-    .commandDir('commands')
-    .help()
-    .demandCommand()
-    .argv;
+const y = yargs()
+y.usage('Usage: $0 <command> [options]')
+y.version("1.2.0")
+
+y.command(init)
+y.command(sync)
+
+y.help()
+
+y.parse(process.argv.slice(2))
+
+// If no command is passed, show help
+if (!process.argv.slice(2).length) {
+    y.showHelp()
+}
