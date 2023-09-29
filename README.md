@@ -37,7 +37,7 @@ Or, manually create a `.blobfishrc` file in your project root folder. The file i
 ```
 > As you can see, you can specify a file path to copy to, or just the file name to copy to the same directory.
 
-Make sure you already have a GitHub token with the `repo` scope. You can create one [here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
+Make sure you already have a GitHub personal access token with the `repo` scope. You can create one [here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
 
 Then, create a `.env` file in your project root folder with the following content:
 ```bash
