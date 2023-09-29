@@ -1,5 +1,4 @@
 [![npm version](https://badge.fury.io/js/angular2-expandable-list.svg)](https://badge.fury.io/js/blobfish)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/capythulhu/blobfish)
 
 <p align="center">
     <img width="200" src="https://github.com/capythulhu/blobfish/assets/20731019/8ecf9b77-8a17-474d-9927-485ac964a7ac" alt="Blobfish Logo">
