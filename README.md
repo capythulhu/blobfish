@@ -1,7 +1,7 @@
 [![npm version](https://badge.fury.io/js/angular2-expandable-list.svg)](https://badge.fury.io/js/blobfish)
 
 <p align="center">
-    <img width="200" src="https://github.com/capythulhu/blobfish/assets/20731019/8ecf9b77-8a17-474d-9927-485ac964a7ac" alt="Blobfish Logo">
+    <img width="200" src="https://github.com/capythulhu/blobfish/assets/20731019/0cd8710d-139e-4cc9-a448-bfaffc98233e" alt="Blobfish Logo">
 </p>
 
 # blobfish
