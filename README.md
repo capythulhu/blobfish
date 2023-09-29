@@ -24,7 +24,7 @@ Or, manually create a `.blobfishrc` file in your project root folder. The file i
 ```json
 [
   {
-    "repo": "articleflow/server",
+    "repo": "cool-org/awesome-repo",
     "files": [
       "path/to/file.js",
       {
