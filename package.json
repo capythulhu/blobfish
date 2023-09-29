@@ -1,0 +1,31 @@
+{
+  "name": "blobfish",
+  "version": "1.0.0",
+  "description": "File sync between GitHub repos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ooba": "echo wasup"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/capythulhu/blobfish.git"
+  },
+  "keywords": [
+    "sync",
+    "file",
+    "file-sync"
+  ],
+  "author": "capythulhu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/capythulhu/blobfish/issues"
+  },
+  "homepage": "https://github.com/capythulhu/blobfish#readme",
+  "bin": {
+    "blobfish": "./bin.js"
+  },
+  "dependencies": {
+    "yargs": "^17.7.2"
+  }
+}

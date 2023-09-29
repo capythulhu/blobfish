@@ -1,0 +1,12 @@
+[
+  {
+    "repo": "articleflow/server",
+    "files": [
+      "example_1.js",
+      {
+        "from": "example_2.js",
+        "to": "dir/example.js"
+      }
+    ]
+  }
+]
