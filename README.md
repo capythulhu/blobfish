@@ -23,16 +23,16 @@ blobfish init
 Or, manually create a `.blobfishrc` file in your project root folder. The file is a JSON array of objects with the following structure:
 ```json
 [
-    {
-        "repo": "<owner>/<repo>",
-        "files": [
-            "example_1.js",
-            {
-                "from": "example_2.js",
-                "to": "dir/example.js"
-            }
-        ]
-    }
+  {
+    "repo": "articleflow/server",
+    "files": [
+      "path/to/file.js",
+      {
+        "from": "path/to/another_file.js",
+        "to": "target/path/to/another_file.js"
+      }
+    ]
+  }
 ]
 ```
 > As you can see, you can specify a file path to copy to, or just the file name to copy to the same directory.
