@@ -3,13 +3,13 @@ import chalk from 'chalk';
 
 export default {
     command: 'init',
-    desc: 'Add .blobfish file to the root of your project',
+    desc: 'Add .blobfishrc file to the root of your project',
     handler: (argv) => {
-        if (existsSync('.blobfish')) {
-            console.error(chalk.yellowBright('🐡 .blobfish file already exists!'));
+        if (existsSync('.blobfishrc')) {
+            console.error(chalk.yellowBright('🐡 .blobfishrc file already exists!'));
             process.exit(1);
         }
-        writeFileSync('.blobfish', JSON.stringify([
+        writeFileSync('.blobfishrc', JSON.stringify([
         {
             "repo": "<owner>/<repo>",
             "files": [
@@ -22,6 +22,6 @@ export default {
         }
         ], null, 2));
     
-      console.log(chalk.greenBright('🐡 .blobfish file created! You can now edit it and run blobfish sync.'));
+      console.log(chalk.greenBright('🐡 .blobfishrc file created! You can now edit it and run blobfish sync.'));
     }
 }

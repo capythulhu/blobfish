@@ -3,7 +3,7 @@ import chalk from 'chalk';
 
 export default {
     command: 'sync',
-    desc: 'Sync files from .blobfish file to your project',
+    desc: 'Sync files from .blobfishrc file to your project',
     options: {
         token: {
             alias: 't',
@@ -27,17 +27,17 @@ export default {
         // Check if verbose is passed as an argument
         const verbose = argv.verbose || argv.v || false;
     
-        // Check if .blobfish file exists
-        if (!existsSync('.blobfish')) {
-            console.error(chalk.redBright('🐡 No .blobfish file detected. Run blobfish init first, or crete it manually.'));
+        // Check if .blobfishrc file exists
+        if (!existsSync('.blobfishrc')) {
+            console.error(chalk.redBright('🐡 No .blobfishrc file detected. Run blobfish init first, or crete it manually.'));
             process.exit(1);
         }
     
-        // Read .blobfish file
-        var blobfish = JSON.parse(readFileSync('.blobfish', 'utf8'));
+        // Read .blobfishrc file
+        var blobfish = JSON.parse(readFileSync('.blobfishrc', 'utf8'));
     
-        // Validate .blobfish file
-        const error = chalk.redBright('🐡 Invalid .blobfish file. Please check the documentation.')
+        // Validate .blobfishrc file
+        const error = chalk.redBright('🐡 Invalid .blobfishrc file. Please check the documentation.')
         if (!Array.isArray(blobfish)) {
             console.error(error);
             process.exit(1);

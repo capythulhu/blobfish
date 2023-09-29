@@ -20,7 +20,7 @@ Run the following command in your project root folder:
 ```bash
 blobfish init
 ```
-Or, manually create a `.blobfish` file in your project root folder. The file is a JSON array of objects with the following structure:
+Or, manually create a `.blobfishrc` file in your project root folder. The file is a JSON array of objects with the following structure:
 ```json
 [
     {
