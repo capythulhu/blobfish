@@ -1,0 +1,12 @@
+[
+  {
+    "repo": "<owner>/<repo>",
+    "files": [
+      "example_1.js",
+      {
+        "from": "example_2.js",
+        "to": "dir/example.js"
+      }
+    ]
+  }
+]

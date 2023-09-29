@@ -137,9 +137,9 @@ ${content}`,
                 if (verbose) console.log(`🐡 Synced ${from} from ${repository.repo} to ${to}`);
             }
     
-            if (verbose) console.log(chalk.green(`🐡 Synced ${repository.repo}`));
+            if (verbose) console.log(chalk.greenBright(`🐡 Synced ${repository.repo}`));
         }
     
-        console.log(green(`🐡 Synced ${syncedFiles} out of ${totalFiles} files!`));
+        console.log(chalk.greenBright(`🐡 Synced ${syncedFiles} out of ${totalFiles} files!`));
     }
 }
