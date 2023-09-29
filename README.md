@@ -37,9 +37,21 @@ Or, manually create a `.blobfish` file in your project root folder. The file is 
 ```
 > As you can see, you can specify a file path to copy to, or just the file name to copy to the same directory.
 
+Make sure you already have a GitHub token with the `repo` scope. You can create one [here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
+
+Then, create a `.env` file in your project root folder with the following content:
+```bash
+GH_TOKEN=<your_token>
+```
+
 Then, run the following command to sync your files:
 ```bash
 blobfish sync
+```
+
+You can also run the ```blobfish sync``` command with the ```--token``` flag if you don't want to use a `.env` file:
+```bash
+blobfish sync --token <your_token>
 ```
 
 And that's it! Your files will be copied to the specified repositories.
