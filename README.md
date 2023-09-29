@@ -12,7 +12,7 @@ This binary allows you to dynamically sync files between GitHub retpositories.
 
 You can install this package globally with:
 ```bash
-npm install -g blobfish
+npm install blobfish
 ```
 
 ## Usage
