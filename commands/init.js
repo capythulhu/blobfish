@@ -3,7 +3,11 @@ const fs = require('fs');
 exports.command = 'init'
 exports.desc = 'Add .blobfish file to the root of your project'
 exports.handler = function (argv) {
-  fs.writeFileSync('.blobfish', JSON.stringify([
+    if (fs.existsSync('.blobfish')) {
+        console.error('🐡 .blobfish file already exists!');
+        process.exit(1);
+    }
+    fs.writeFileSync('.blobfish', JSON.stringify([
     {
         "repo": "<owner>/<repo>",
         "files": [
@@ -14,7 +18,7 @@ exports.handler = function (argv) {
             }
         ]
     }
-  ], null, 2));
+    ], null, 2));
 
   console.log('🐡 .blobfish file created! You can now edit it and run blobfish sync.');
 }

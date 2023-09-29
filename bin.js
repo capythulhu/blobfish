@@ -1,16 +1,14 @@
 #!/usr/bin/env node
 
 const yargs = require('yargs');
-const { handler } = require('./commands/sync');
+
+// Get .env variables
+require('dotenv').config();
 
 // Configure yargs
-const argv = yargs
+yargs
     .usage('Usage: $0 <command> [options]')
     .commandDir('commands')
     .help()
+    .demandCommand()
     .argv;
-
-// if no command passed, run console.log("hello")
-if (yargs.argv._.length === 0) {
-    handler(argv);
-}
