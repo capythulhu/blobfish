@@ -1,5 +1,5 @@
 import { existsSync, readFileSync, mkdirSync, writeFileSync } from 'fs';
-import { path } from 'path';
+import path from 'path';
 import chalk from 'chalk';
 import Ajv from 'ajv';
 
