@@ -1,5 +1,6 @@
 import { existsSync, readFileSync, mkdirSync, writeFileSync } from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import chalk from 'chalk';
 import Ajv from 'ajv';
 
@@ -38,7 +39,10 @@ export default {
         // Read .blobfishrc file
         const blobfishrc = JSON.parse(readFileSync('.blobfishrc', 'utf8'));
         // Read and parse the schema
-        const schema = JSON.parse(readFileSync(path.resolve('./schemas/blobfishrc.json'), 'utf8'));
+        const __filename = fileURLToPath(import.meta.url);
+        const __dirname = path.dirname(__filename);
+        const filePath = path.resolve(__dirname, 'schemas/blobfishrc.json');
+        const schema = JSON.parse(readFileSync(filePath, 'utf8'));
     
         // Validate .blobfishrc file
         const ajv = new Ajv();
