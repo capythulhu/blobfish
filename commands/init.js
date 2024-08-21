@@ -13,7 +13,7 @@ export default {
             "$schema": "http://raw.githubusercontent.com/capythulhu/blobfish/main/schemas/blobfishrc-24-08-21.json",
             "replications": [
                 {
-                    "repo": "<owner>/<repo>",
+                    "repository": "<owner>/<repo>",
                     "files": [
                         "example_1.js",
                         {

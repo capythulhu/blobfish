@@ -20,8 +20,10 @@ npm i -D blobfish
 ## 🐡 Usage
 Run the following command in your project root folder:
 ```bash
-blobfish init
+npx blobfish init
 ```
+> You can also install blobfish globally by running `npm i -g blobfish` and then run just `blobfish init`, if you prefer.
+
 Or, manually create a `.blobfishrc` file in your project root folder. The file is a JSON object with the following structure:
 ```json
 {
