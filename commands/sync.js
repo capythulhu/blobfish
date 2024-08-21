@@ -40,37 +40,45 @@ export default {
         const error = chalk.redBright('🐡 Invalid .blobfishrc file. Please check the documentation.')
         if (typeof blobfish !== 'object') {
             console.error(error);
+            console.error("Structure is not an object.");
             process.exit(1);
         }
         if (!blobfish.replications) {
             console.error(error);
+            console.error("Replications is not defined.");
             process.exit(1);
         }
         if (blobfish.comment && typeof blobfish.comment !== 'string') {
             console.error(error);
+            console.error("Comment is defined but is not a string.");
             process.exit(1);
         }
         for (const replication of blobfish.replications) {
-            if (!replication.repositorysitory) {
+            if (!replication.repository) {
                 console.error(error);
+                console.error("Repository is not defined.");
                 process.exit(1);
             }
             if (!replication.files) {
                 console.error(error);
+                console.error("Files is not defined.");
                 process.exit(1);
             }
             if (!Array.isArray(replication.files)) {
                 console.error(error);
+                console.error("Files is not an array.");
                 process.exit(1);
             }
             for (const file of replication.files) {
                 if (typeof file !== 'string' && typeof file !== 'object') {
                     console.error(error);
+                    console.error("File is not a string or object.");
                     process.exit(1);
                 }
                 if (typeof file === 'object') {
                     if (!file.from || !file.to) {
                         console.error(error);
+                        console.error("File object is missing from or to.");
                         process.exit(1);
                     }
                 }
