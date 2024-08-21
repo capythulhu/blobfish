@@ -3,7 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import chalk from 'chalk';
 import Ajv from 'ajv';
-import betterAjvErrors from 'better-ajv-errors';
+import ajvErrors from 'ajv-errors';
 
 export default {
     command: 'sync',
@@ -47,11 +47,13 @@ export default {
     
         // Validate .blobfishrc file
         const ajv = new Ajv({allErrors: true});
+        ajvErrors(ajv);
         const validate = ajv.compile(schema);
         const valid = validate(blobfishrc);
         if (!valid) {
             console.error(chalk.redBright('🐡 Invalid .blobfishrc file. Please check the documentation.'));
-            console.log(betterAjvErrors(schema, blobfishrc, validate.errors))
+            for (const error of validate.errors)
+                console.error(chalk.redBright(`› ${error.dataPath} ${error.message}`));
             process.exit(1);
         }
 
