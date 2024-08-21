@@ -53,7 +53,7 @@ export default {
         if (!valid) {
             console.error(chalk.redBright('🐡 Invalid .blobfishrc file. Please check the documentation.'));
             for (const error of validate.errors)
-                console.error(chalk.redBright(`› ${error.dataPath} ${error.message}`));
+                console.error(chalk.redBright(`› ${error.keyword} ${error.message}`));
             process.exit(1);
         }
 
