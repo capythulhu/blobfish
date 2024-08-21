@@ -1,4 +1,6 @@
-[![npm version](https://badge.fury.io/js/blobfish.svg)](https://badge.fury.io/js/blobfish)
+[![npm version](https://img.shields.io/npm/v/blobfish)](https://www.npmjs.com/package/blobfish)
+![sexiest package](https://img.shields.io/badge/prize-%231_sexiest_package-pink
+)
 
 <p align="center">
     <img width="200" src="https://github.com/capythulhu/blobfish/assets/20731019/0cd8710d-139e-4cc9-a448-bfaffc98233e" alt="Blobfish Logo">
