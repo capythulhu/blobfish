@@ -48,7 +48,7 @@ export default {
             console.error("Replications is not defined.");
             process.exit(1);
         }
-        if (blobfish.comment && typeof blobfish.comment !== 'string') {
+        if (typeof blobfish.comment !== 'undefined' && typeof blobfish.comment !== 'string') {
             console.error(error);
             console.error("Comment is defined but is not a string.");
             process.exit(1);
