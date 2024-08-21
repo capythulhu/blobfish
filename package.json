@@ -1,6 +1,6 @@
 {
   "name": "blobfish",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "description": "File sync between GitHub repos",
   "main": "index.js",
   "scripts": {
@@ -27,6 +27,7 @@
     "blobfish": "./bin.js"
   },
   "dependencies": {
+    "ajv": "^8.17.1",
     "chalk": "^5.3.0",
     "dotenv": "^16.3.1",
     "yargs": "^17.7.2"

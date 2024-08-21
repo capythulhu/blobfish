@@ -10,7 +10,7 @@ export default {
             process.exit(1);
         }
         writeFileSync('.blobfishrc', JSON.stringify({
-            "$schema": "http://raw.githubusercontent.com/capythulhu/blobfish/main/schemas/blobfishrc-24-08-21.json",
+            "$schema": "http://raw.githubusercontent.com/capythulhu/blobfish/main/schemas/blobfishrc.json",
             "replications": [
                 {
                     "repository": "<owner>/<repo>",
