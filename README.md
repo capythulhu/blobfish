@@ -8,13 +8,13 @@
 
 # blobfish
 
-This binary allows you to dynamically sync files between GitHub repositories.
+This package allows you to dynamically sync files between GitHub repositories.
 
 ## 🐡 Install
 
-You can install this package globally with:
+You can install this with:
 ```bash
-npm install blobfish
+npm i -D blobfish
 ```
 
 ## 🐡 Usage
@@ -22,7 +22,7 @@ Run the following command in your project root folder:
 ```bash
 blobfish init
 ```
-Or, manually create a `.blobfishrc` file in your project root folder. The file is a JSON array of objects with the following structure:
+Or, manually create a `.blobfishrc` file in your project root folder. The file is a JSON object with the following structure:
 ```json
 {
   "replications": [
@@ -50,6 +50,7 @@ Then, create a `.env` file in your project root folder with the following conten
 ```bash
 GH_TOKEN=<your_token>
 ```
+> You can also set the `GH_TOKEN` environment variable directly.
 
 Then, run the following command to sync your files:
 ```bash
