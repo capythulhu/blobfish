@@ -9,18 +9,20 @@ export default {
             console.error(chalk.yellowBright('🐡 .blobfishrc file already exists!'));
             process.exit(1);
         }
-        writeFileSync('.blobfishrc', JSON.stringify([
-        {
-            "repo": "<owner>/<repo>",
-            "files": [
-                "example_1.js",
+        writeFileSync('.blobfishrc', JSON.stringify({
+            "replications": [
                 {
-                    "from": "example_2.js",
-                    "to": "dir/example.js"
+                    "repo": "<owner>/<repo>",
+                    "files": [
+                        "example_1.js",
+                        {
+                            "from": "example_2.js",
+                            "to": "dir/example.js"
+                        }
+                    ]
                 }
-            ]
-        }
-        ], null, 2));
+            ],
+        }, null, 2));
     
       console.log(chalk.greenBright('🐡 .blobfishrc file created! You can now edit it and run blobfish sync.'));
     }
