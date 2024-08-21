@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import chalk from 'chalk';
 import Ajv from 'ajv';
+import ajvErrors from 'ajv-errors';
 
 export default {
     command: 'sync',
@@ -45,7 +46,8 @@ export default {
         const schema = JSON.parse(readFileSync(filePath, 'utf8'));
     
         // Validate .blobfishrc file
-        const ajv = new Ajv();
+        const ajv = new Ajv({allErrors: true});
+        ajvErrors(ajv);
         const validate = ajv.compile(schema);
         const valid = validate(blobfishrc);
         if (!valid) {
