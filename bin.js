@@ -12,7 +12,7 @@ import sync from './commands/sync.js';
 // Configure yargs
 const y = yargs()
 y.usage('Usage: $0 <command> [options]')
-y.version("1.4.14")
+y.version("1.4.15")
 
 y.command(init)
 y.command(sync)

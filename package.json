@@ -1,6 +1,6 @@
 {
   "name": "blobfish",
-  "version": "1.4.14",
+  "version": "1.4.15",
   "description": "File sync between GitHub repos",
   "main": "index.js",
   "scripts": {
