@@ -41,7 +41,7 @@ export default {
         // Read and parse the schema
         const __filename = fileURLToPath(import.meta.url);
         const __dirname = path.dirname(__filename);
-        const filePath = path.resolve(__dirname, 'schemas/blobfishrc.json');
+        const filePath = path.resolve(__dirname, '../schemas/blobfishrc.json');
         const schema = JSON.parse(readFileSync(filePath, 'utf8'));
     
         // Validate .blobfishrc file
