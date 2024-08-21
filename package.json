@@ -1,11 +1,10 @@
 {
   "name": "blobfish",
-  "version": "1.4.18",
+  "version": "1.4.19",
   "description": "File sync between GitHub repos",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "ooba": "echo wasup"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
