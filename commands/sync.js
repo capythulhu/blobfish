@@ -51,7 +51,7 @@ export default {
         const valid = validate(blobfishrc);
         if (!valid) {
             console.error(chalk.redBright('🐡 Invalid .blobfishrc file. Please check the documentation.'));
-            console.log(betterAjvErrors(schema, blobfishrc, validate.errors, {format: 'js'}))
+            console.log(betterAjvErrors(schema, blobfishrc, validate.errors))
             process.exit(1);
         }
 
