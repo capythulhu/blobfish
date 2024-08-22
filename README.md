@@ -44,7 +44,7 @@ Or, manually create a `.blobfishrc` file in your project root folder. The file i
 ```
 > You can specify a file path to copy to, or just the file name to copy to the same directory.
 
-> If the `comment` field is present, it overrides the default comment that is added to the commit message.
+> If the `comment` field is present, it overrides the default comment that is added at the beggining of the replicated file.
 
 Make sure you already have a GitHub personal access token with the `repository` scope. You can create one [here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
 
