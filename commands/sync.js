@@ -114,11 +114,11 @@ ${delimiter} and commit the changes on this repo too.\n`
 
                     // Replace {{url}} with the API URL
                     comment = comment.replace(/{{url}}/g, `https://github.com/${replication.repository}/blob/main/${from}`);
-
+                    
                     // Write the file
                     writeFileSync(
                     `./${to}`,
-                    `${comment}${content}`,
+                    `${comment}\n${content}`,
                     "utf-8"
                     );
                 } catch (e) {
