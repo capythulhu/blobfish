@@ -24,7 +24,7 @@ npx blobfish init
 ```
 > You can also install blobfish globally by running `npm i -g blobfish` and then run just `blobfish init`, if you prefer.
 
-Or, manually create a `.blobfishrc` file in your project root folder. The file is a JSON object with the following structure:
+Or, manually create a `.blobfishrc` file in your project root folder. Here's an example of the JSON file:
 ```json
 {
   "replications": [
@@ -42,9 +42,13 @@ Or, manually create a `.blobfishrc` file in your project root folder. The file i
   "comment": "// This is a generated file"
 }
 ```
-> You can specify a file path to copy to, or just the file name to copy to the same directory.
+> Specifying the `from` and `to` fields allows you to copy the file to a different path in the target repository, but if you only provide the filename, the path will be the same as the original file.
 
-> If the `comment` field is present, it overrides the default comment that is added at the beggining of the replicated file.
+If the `comment` field is present, it overrides the original auto-generated comment.
+
+> You can use `{{url}}` in the `comment` to add the URL of the repository to your custom comment.
+
+However, if you wish to keep the original comment but change the delimiter, you can add the `commentDelimiter` field instead, like: ```"commentDelimiter": "#"```.
 
 Make sure you already have a GitHub personal access token with the `repository` scope. You can create one [here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
 
@@ -56,12 +60,12 @@ GH_TOKEN=<your_token>
 
 Then, run the following command to sync your files:
 ```bash
-blobfish sync
+npx blobfish sync
 ```
 
 You can also run the ```blobfish sync``` command with the ```--token``` flag if you don't want to use a `.env` file:
 ```bash
-blobfish sync --token <your_token>
+npx blobfish sync --token <your_token>
 ```
 
 And that's it! Your files will be copied to the specified repositories.

@@ -1,58 +1,105 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "http://raw.githubusercontent.com/capythulhu/blobfish/main/schemas/blobfishrc.json",
-    "type": "object",
-    "properties": {
-      "$schema": {
-        "type": "string",
-        "description": "The JSON schema version."
+  "$id": "http://raw.githubusercontent.com/capythulhu/blobfish/main/schemas/blobfishrc.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "not": {
+    "allOf": [
+      {
+        "required": [
+          "comment"
+        ]
       },
-      "replications": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "repository": {
-              "type": "string",
-              "description": "The GitHub repository in the format 'owner/repo'."
-            },
-            "files": {
-              "type": "array",
-              "items": {
-                "oneOf": [
-                  {
-                    "type": "string",
-                    "description": "Path to the file in the source repository."
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "from": {
-                        "type": "string",
-                        "description": "Source file path in the source repository."
-                      },
-                      "to": {
-                        "type": "string",
-                        "description": "Target file path in the destination repository."
-                      }
-                    },
-                    "required": ["from"],
-                    "additionalProperties": false
-                  }
-                ]
-              }
-            }
-          },
-          "required": ["repository", "files"],
-          "additionalProperties": false
-        }
-      },
-      "comment": {
-        "type": "string",
-        "description": "Optional comment that overrides the default commit message comment."
+      {
+        "required": [
+          "commentDelimiter"
+        ]
       }
+    ]
+  },
+  "oneOf": [
+    {
+      "not": {
+        "required": [
+          "commentDelimiter"
+        ]
+      },
+      "required": [
+        "comment"
+      ]
     },
-    "required": ["replications"],
-    "additionalProperties": false
-  }
-  
+    {
+      "not": {
+        "required": [
+          "comment"
+        ]
+      },
+      "required": [
+        "commentDelimiter"
+      ]
+    }
+  ],
+  "properties": {
+    "$schema": {
+      "description": "The JSON schema version.",
+      "type": "string"
+    },
+    "comment": {
+      "description": "Optional comment that overrides the default commit message comment.",
+      "type": "string"
+    },
+    "commentDelimiter": {
+      "default": "//",
+      "description": "The delimiter for the default comment.",
+      "type": "string"
+    },
+    "replications": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "files": {
+            "items": {
+              "oneOf": [
+                {
+                  "description": "Path to the file in the source repository.",
+                  "type": "string"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "from": {
+                      "description": "Source file path in the source repository.",
+                      "type": "string"
+                    },
+                    "to": {
+                      "description": "Target file path in the destination repository.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "from"
+                  ],
+                  "type": "object"
+                }
+              ]
+            },
+            "type": "array"
+          },
+          "repository": {
+            "description": "The GitHub repository in the format 'owner/repo'.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repository",
+          "files"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "replications"
+  ],
+  "type": "object"
+}
