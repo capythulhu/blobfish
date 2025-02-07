@@ -75,7 +75,7 @@ export default {
                     console.log(`🐡 Syncing ${from} from ${replication.repository} to ${to}`);
                 }
     
-                const apiUrl = `https://api.github.com/repos/${replication.repository}/contents/${from}${replication.branch ? `?ref=${replication.branch}` : ''}`;
+                const apiUrl = `https://api.github.com/repos/${replication.repository}/contents/${from}?ref=${replication.branch}`;
                 const headers = {
                 Authorization: `token ${token}`,
                 };

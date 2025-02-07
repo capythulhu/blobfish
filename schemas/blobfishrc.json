@@ -95,7 +95,8 @@
         },
         "required": [
           "repository",
-          "files"
+          "files",
+          "branch"
         ],
         "type": "object"
       },

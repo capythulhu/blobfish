@@ -30,6 +30,7 @@ Or, manually create a `.blobfishrc` file in your project root folder. Here's an 
   "replications": [
     {
       "repository": "cool-org/awesome-repo",
+      "branch": "main",
       "files": [
         "path/to/file.js",
         {
@@ -69,3 +70,7 @@ npx blobfish sync --token <your_token>
 ```
 
 And that's it! Your files will be copied to the specified repositories.
+
+## 🐡 Coming Soon
+- Comments and delimiters customization per file type
+- Support non GitHub repositories
