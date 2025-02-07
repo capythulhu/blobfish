@@ -87,6 +87,10 @@
           "repository": {
             "description": "The GitHub repository in the format 'owner/repo'.",
             "type": "string"
+          },
+          "branch": {
+            "description": "The git branch in the repository. Defaults to the main branch",
+            "type": "string"
           }
         },
         "required": [
