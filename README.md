@@ -1,5 +1,5 @@
 [![npm version](https://img.shields.io/npm/v/blobfish)](https://www.npmjs.com/package/blobfish)
-![sexiest package](https://img.shields.io/badge/prize-%231_sexiest_package-pink
+![sexiest package](https://img.shields.io/badge/rated-%231_sexiest_package-pink
 )
 
 <p align="center">
@@ -14,15 +14,15 @@ This package allows you to dynamically sync files between GitHub repositories.
 
 You can install this with:
 ```bash
-npm i -D blobfish
+npm i -g blobfish
 ```
 
 ## 🐡 Usage
 Run the following command in your project root folder:
 ```bash
-npx blobfish init
+blobfish init
 ```
-> You can also install blobfish globally by running `npm i -g blobfish` and then run just `blobfish init`, if you prefer.
+> You can also install blobfish as a dev dependency by running `npm i -D blobfish` and then run commands like this: `npx blobfish init`.
 
 Or, manually create a `.blobfishrc` file in your project root folder. Here's an example of the JSON file:
 ```json
@@ -43,13 +43,15 @@ Or, manually create a `.blobfishrc` file in your project root folder. Here's an 
   "comment": "// This is a generated file"
 }
 ```
-> Specifying the `from` and `to` fields allows you to copy the file to a different path in the target repository, but if you only provide the filename, the path will be the same as the original file.
+> Specifying the `from` and `to` fields allows you to copy the file to a different path in the target repository. If you only provide the filename, the path will be the same as the original file.
+
+Use the `branch` field to specify a branch to fetch your file from.
 
 If the `comment` field is present, it overrides the original auto-generated comment.
 
 > You can use `{{url}}` in the `comment` to add the URL of the repository to your custom comment.
 
-However, if you wish to keep the original comment but change the delimiter, you can add the `commentDelimiter` field instead, like: ```"commentDelimiter": "#"```.
+However, if you wish to keep the original comment but change the delimiter, you can add the `commentDelimiter` field instead, like: ```"commentDelimiter": "#"``` for `.py` files.
 
 Make sure you already have a GitHub personal access token with the `repository` scope. You can create one [here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
 
@@ -61,16 +63,15 @@ GH_TOKEN=<your_token>
 
 Then, run the following command to sync your files:
 ```bash
-npx blobfish sync
+blobfish sync
 ```
 
-You can also run the ```blobfish sync``` command with the ```--token``` flag if you don't want to use a `.env` file:
+You can also input the token directly in the command line:
 ```bash
-npx blobfish sync --token <your_token>
+blobfish sync --token <your_token>
 ```
 
 And that's it! Your files will be copied to the specified repositories.
 
 ## 🐡 Coming Soon
-- Comments and delimiters customization per file type
 - Support non GitHub repositories
