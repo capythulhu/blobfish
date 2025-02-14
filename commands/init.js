@@ -20,7 +20,8 @@ export default {
                             "from": "example_2.js",
                             "to": "dir/example.js"
                         }
-                    ]
+                    ],
+                    "branch": "main"
                 }
             ],
         }, null, 2));
